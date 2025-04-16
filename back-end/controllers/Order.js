@@ -2,7 +2,7 @@ const Order = require("../model/Order");
 const Track = require("../model/Track");
 const User = require("../model/User");
 require('dotenv').config();
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const stripe = require('stripe')(process.env.SECRET_KEY_STRIPE);
 
 
 
