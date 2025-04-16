@@ -261,7 +261,7 @@ const Page = ({ params }) => {
                             <div className="flex">
                                 <div className="text-gray-400 text-sm">
                                     <Image
-                                        src="/images/icon-12.png"
+                                        src="/images/Icon-12.png"
                                         alt="Checked"
                                         width={20}
                                         height={20}
@@ -276,7 +276,7 @@ const Page = ({ params }) => {
                             <div className="flex">
                                 <div className="text-gray-400 text-sm">
                                     <Image
-                                        src="/images/icon-13.png"
+                                        src="/images/Icon-13.png"
                                         alt="Checked"
                                         width={20}
                                         height={20}
@@ -291,7 +291,7 @@ const Page = ({ params }) => {
                             <div className="flex">
                                 <div className="text-gray-400 text-sm">
                                     <Image
-                                        src="/images/icon-14.png"
+                                        src="/images/Icon-14.png"
                                         alt="Checked"
                                         width={20}
                                         height={20}
@@ -306,7 +306,7 @@ const Page = ({ params }) => {
                             <div className="flex">
                                 <div className="text-gray-400 text-sm">
                                     <Image
-                                        src="/images/icon-15.png"
+                                        src="/images/Icon-15.png"
                                         alt="Checked"
                                         width={20}
                                         height={20}
@@ -321,7 +321,7 @@ const Page = ({ params }) => {
                             <div className="flex">
                                 <div className="text-gray-400 text-sm">
                                     <Image
-                                        src="/images/icon-16.png"
+                                        src="/images/Icon-16.png"
                                         alt="Checked"
                                         width={20}
                                         height={20}
@@ -336,7 +336,7 @@ const Page = ({ params }) => {
                             <div className="flex">
                                 <div className="text-gray-400 text-sm">
                                     <Image
-                                        src="/images/icon-17.png"
+                                        src="/images/Icon-17.png"
                                         alt="Checked"
                                         width={20}
                                         height={20}
