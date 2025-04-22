@@ -48,7 +48,7 @@ const EditProductId = async (req, res, next) => {
 // Get All Products
 const GetAllProducts = async (req, res, next) => {
     try {
-        const products = await Product.find();
+        const products = await Product.find().sort({ date: -1 });
         res.json(products);
     } catch (error) {
         next(error);

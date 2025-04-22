@@ -7,7 +7,7 @@ const cloudinary = require("cloudinary").v2
 // Get All Users
 const GetAllUsers = async (req, res, next) => {
     try {
-        const user = await User.find({})
+        const user = await User.find({}).sort({ createdAt: -1 });
         return res.json(user)
     } catch (error) {
         next(error)
@@ -21,7 +21,7 @@ const EditUser = async (req, res, next) => {
         // Edit User 
         const user = await User.findByIdAndUpdate(req.params.id, {
             ...req.body,
-            image: req.body.image || req.file.path && (await cloudinary.uploader.upload(req.file.path)).secure_url || '',   
+            image: req.body.image || req.file.path && (await cloudinary.uploader.upload(req.file.path)).secure_url || '',
             country: req.body.country || '',
             address: req.body.address || '',
             zip_code: req.body.zip_code || '',

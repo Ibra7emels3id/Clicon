@@ -23,7 +23,7 @@ const AddCategory = async (req, res, next) => {
 // Get All Categories
 const GetCategories = async (req, res, next) => {
     try {
-        const categories = await Category.find({});
+        const categories = await Category.find({}).sort({ date: -1 });
         res.json(categories);
     } catch (error) {
         next(error);

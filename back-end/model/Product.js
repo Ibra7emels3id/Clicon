@@ -125,6 +125,10 @@ const ProductSchema = new mongoose.Schema({
     update_product: {
         type: Date,
         default: Date.now
+    },
+    inStock:{
+        type: Boolean,
+        default: true
     }
 });
 

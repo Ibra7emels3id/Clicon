@@ -167,6 +167,19 @@ const EditOrder = async (req, res, next) => {
     }
 };
 
+// delete order
+const DeleteOrder = async (req, res, next) => {
+    try {
+        const order = await Order.findByIdAndDelete(req.params.id);
+        if (!order) {
+            return res.status(404).json({ error: 'Order not found' });
+        }
+        res.status(200).json({ message: 'Order deleted successfully', order });
+    } catch (error) {
+        next(error)
+    }
+};
+
 // Get All Track
 const GetAllTrack = async (req, res, next) => {
     try {
@@ -205,4 +218,5 @@ module.exports = {
     EditOrder,
     GetAllTrack,
     DeleteTrack,
+    DeleteOrder
 }
