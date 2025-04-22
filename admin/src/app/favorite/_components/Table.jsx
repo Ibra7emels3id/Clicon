@@ -101,8 +101,7 @@ const Table = () => {
                                                         <span className="">{new Date(product?.createdAt).toLocaleTimeString()}</span>
                                                     </li>
                                                     <li className="px-4 py-3 w-[150px]">
-                                                        <span className="truncate">#{product?.cart.quantity || '00'}</span><br />
-                                                        <span className="truncate">${product?.cart?.total_price || '00'}</span>
+                                                        <span className="truncate">#{product?.wishlists.quantity || '00'}</span><br />
                                                     </li>
                                                     <li className="px-4 py-3 w-[100px]">
                                                         <label className="relative inline-flex items-center cursor-pointer text-gray-900 gap-3">
@@ -120,7 +119,7 @@ const Table = () => {
                                                     </li>
                                                 </ul>
                                                 <div className={`${isShow === product?._id ? 'flex flex-col ' : 'hidden'} border-t border-gray-500/20 w-full`}>
-                                                    {product?.cart?.items?.map((item, index) => (
+                                                    {product?.wishlists?.items?.map((item, index) => (
                                                         <ul key={index} className='w-full flex items-center justify-between' >
                                                             <li className="md:px-4 pl-2 md:pl-4 py-3 flex items-center space-x-3 truncate w-[400px]">
                                                                 <div className="border border-gray-300 rounded p-2">

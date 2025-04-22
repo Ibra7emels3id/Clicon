@@ -60,15 +60,31 @@ const NavBar = () => {
         </svg>
     );
 
+    // Blog 
+    const blogIcon = (
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12.75V12A2.25 2.25 0 0 1 4.5 9.75h15A2.25 2.25 0 0 1 21.75 12v.75m-8.69-6.44-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z" />
+        </svg>
+    );
+
+    // favorite
+    const favoriteIcon = (
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
+        </svg>
+    );
+
 
     // Sidebar Links
     const sidebarLinks = [
         { name: "Dashboard", path: "/", icon: dashboardIcon },
         { name: "Shopping", path: "/shop-cart", icon: ShopIcon },
         { name: "Orders", path: "/orders", icon: cartIcon },
+        { name: "Favorite", path: "/favorite", icon: favoriteIcon },
         { name: "Overview", path: "/overview", icon: overviewIcon },
         { name: "Products", path: "/products", icon: productIcon },
         { name: "Categories", path: "/categories", icon: categoryIcon },
+        { name: "Blogs", path: "/blogs", icon: blogIcon },
         { name: "Chat", path: "/chat", icon: chatIcon },
     ];
 

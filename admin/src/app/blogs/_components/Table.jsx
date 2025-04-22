@@ -2,39 +2,28 @@
 import { FetchProducts } from '@/lib/features/Product/GetProductsSlice';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import Link from 'next/link';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import Dialog from './Dialog';
+import React, { useCallback, useEffect, useMemo } from 'react';
+// import Dialog from './Dialog';
 import { FetchCategories } from '@/lib/features/Category/GetCategoriesSlice';
-import Image from 'next/image';
+import { FetchBlogs } from '@/lib/features/Blog/GetBlogs';
+import Dialog from './Dialog';
 
 const Table = () => {
-    const { products } = useAppSelector(state => state.products);
+    const { blogs } = useAppSelector(state => state.blogs);
     const { categories } = useAppSelector(state => state.categories);
     const [search, setSearch] = React.useState('');
     const dispatch = useAppDispatch();
     const [isOpen, setIsOpen] = React.useState(false);
     const [productId, setProductId] = React.useState(null);
     const [productName, setProductName] = React.useState('');
-    const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 4;
 
 
     // Filter Products
     const filteredProducts = useMemo(() => {
-        return products?.filter((product) => {
-            return product.title.toLowerCase().includes(search.toLowerCase()) || product.category.name.toLowerCase().includes(search.toLowerCase())
+        return blogs?.filter((product) => {
+            return product.title.toLowerCase().includes(search.toLowerCase()) || product.category.toLowerCase().includes(search.toLowerCase())
         })
-    }, [search, products])
-
-
-    // pagination
-    const indexOfLastItem = currentPage * itemsPerPage;
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = filteredProducts?.slice(indexOfFirstItem, indexOfLastItem);
-    // Get Total Page
-    const totalPage = Math.ceil(products.length / itemsPerPage);
-
-
+    }, [search, blogs])
 
     // Handle Delete Product
     const handleDelete = useCallback((id, name) => {
@@ -46,10 +35,9 @@ const Table = () => {
     }, [])
 
 
-
     // Handle get all products
     useEffect(() => {
-        dispatch(FetchProducts())
+        dispatch(FetchBlogs())
         dispatch(FetchCategories())
     }, [])
 
@@ -74,8 +62,8 @@ const Table = () => {
             <div className="flex-1 p-4 max-xl:ml-16 ml-64 overflow-auto">
                 <div className="flex flex-col">
                     <div className="flex w-full items-center justify-between min-w-[700px]">
-                        <h3 className='font-bold text-2xl '>DashBoard.</h3>
-                        <Link href={'/products/AddProduct'} className='bg-[#FA8232] hover:bg-[#363636] w-[200px] transition-all duration-300 text-white flex items-center justify-center h-12'>Add Product</Link>
+                        <h3 className='font-bold text-2xl '>Blogs.</h3>
+                        <Link href={'/blogs/AddBlog'} className='bg-[#FA8232] hover:bg-[#363636] w-[200px] transition-all duration-300 text-white flex items-center justify-center h-12'>Add Blog</Link>
                     </div>
                     <div className="flex gap-1">
                         <div className="search w-full py-4">
@@ -100,25 +88,26 @@ const Table = () => {
                                         <tr>
                                             <th className="px-4 py-3 font-semibold truncate">Product</th>
                                             <th className="px-4 py-3 font-semibold truncate">Category</th>
-                                            <th className="px-4 py-3 font-semibold truncate hidden md:block">Selling Price</th>
+                                            <th className="px-4 py-3 font-semibold truncate hidden md:block">Date</th>
                                             <th className="px-4 py-3 font-semibold truncate">In Stock</th>
                                             <th className="px-4 py-3 font-semibold truncate">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody className="text-sm text-gray-500">
-                                        {currentItems?.map((product, index) => (
+                                        {filteredProducts?.map((product, index) => (
                                             <tr key={index} className="border-t border-gray-500/20">
                                                 <td className="md:px-4 pl-2 md:pl-4 py-3 flex items-center space-x-3 truncate">
                                                     <div className="border border-gray-300 rounded p-2">
-                                                        <Image width={300} height={200} loading='lazy' src={product?.image_1} alt="Product" className="w-16" />
+                                                        <img src={product?.image} alt="Product" className="w-16" />
                                                     </div>
                                                     <span className="truncate max-sm:hidden w-full">{product?.title?.slice(0, 20)}</span>
                                                 </td>
                                                 <td className="px-4 py-3">
-                                                    <span className="truncate">{product?.category?.name}</span><br />
-                                                    <span className="">_{product?.category?.min_category}</span>
+                                                    <span className="truncate">{product?.category}</span><br />
                                                 </td>
-                                                <td className="px-4 py-3 max-sm:hidden">${product?.price}</td>
+                                                <td className="px-4 py-3 max-sm:hidden">
+                                                    <span className="truncate">{product?.date}</span><br />
+                                                </td>
                                                 <td className="px-4 py-3">
                                                     <label className="relative inline-flex items-center cursor-pointer text-gray-900 gap-3">
                                                         <input type="checkbox" className="sr-only peer" defaultChecked={product?.inStock} />
@@ -127,7 +116,7 @@ const Table = () => {
                                                     </label>
                                                 </td>
                                                 <td className="px-4 space-x-2 py-3 h-full">
-                                                    <Link href={`/products/EditProduct/${product?._id}`} className=" inline-block transition-all duration-300 text-sky-700 hover:text-sky-800 cursor-pointer font-bold h-full">
+                                                    <Link href={`/blogs/EditBlog/${product?._id}`} className=" inline-block transition-all duration-300 text-sky-700 hover:text-sky-800 cursor-pointer font-bold h-full">
                                                         {BtnEdit}
                                                     </Link>
                                                     <button onClick={() => handleDelete(product?._id, product?.title)} className=" inline-block transition-all duration-300 text-red-700 hover:text-red-800 cursor-pointer font-bold h-full">
@@ -138,18 +127,6 @@ const Table = () => {
                                         ))}
                                     </tbody>
                                 </table>
-                            </div>
-                            <div className='flex items-center justify-center py-5' style={{ marginTop: '10px' }}>
-                                {[...Array(totalPage)].map((_, index) => (
-                                    <button
-                                        key={index}
-                                        onClick={() => setCurrentPage(index + 1)}
-                                        className={`${currentPage === index + 1 ? 'bg-[#FA8232] text-white border-[#FA8232]' : 'text-[#FA8232]'} border border-[#FA8232] rounded text-sm px-4 py-1 cursor-pointer`}
-                                        style={{ margin: '0 5px', background: currentPage === index + 1 ? '#FA8232' : 'white' }}
-                                    >
-                                        {index + 1}
-                                    </button>
-                                ))}
                             </div>
                         </div>
                     </div>

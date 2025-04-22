@@ -18,6 +18,10 @@ const blogSchema = new mongoose.Schema({
         type: String,
         required: false,
     },
+    inStock:{
+        type: Boolean,
+        default: true
+    },
     createdAt: {
         type: Date,
         default: Date.now,

@@ -6,6 +6,8 @@ import GetAllOrdersSlice from './features/Order/GetAllOrdersSlice'
 import GetOrderDetails from './features/Order/OrderDetails'
 import GetCategoryId from './features/Category/GetCategoryId'
 import GetUsersSlice from './features/Users/GetUsersSlice'
+import GetBlogsSlice from './features/Blog/GetBlogs'
+import GetBlogIdSlice from './features/Blog/GetBlog'
 
 
 
@@ -17,7 +19,7 @@ export const store = configureStore({
 
 
         // products
-        products: ProductSlice ,
+        products: ProductSlice,
         product: GetDetailsProductSlice,
 
 
@@ -28,6 +30,12 @@ export const store = configureStore({
 
         // Users
         users: GetUsersSlice,
+
+
+
+        // blogs
+        blogs: GetBlogsSlice,
+        blog: GetBlogIdSlice,
 
 
 
